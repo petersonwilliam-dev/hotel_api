@@ -1,0 +1,10 @@
+services:
+  postgresql:
+    container_name: banco_hotel
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=root
+      - POSTGRESQL_PASSWORD=root
+      - POSTGRESQL_DATABASE=reservaHotel
