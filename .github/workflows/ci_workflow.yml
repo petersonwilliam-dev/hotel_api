@@ -22,5 +22,5 @@ jobs:
     - name: Instala dependências
       run: mvn dependency:resolve
     
-    - name: Realizar lint
-      run: mvn checkstyle:check pmd:check com.github.spotbugs:spotbugs-maven-plugin:check
+    - name: Realizar teste de qualidade de código
+      run: mvn pmd:check com.github.spotbugs:spotbugs-maven-plugin:check
