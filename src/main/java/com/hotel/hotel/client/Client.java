@@ -27,11 +27,13 @@ public class Client {
     private String pin;
     private String email;
     private LocalDate dateOfBirth;
+    private Boolean deleted;
 
     @Embedded
     private ContactInformation contactInformation;
 
     public Client(ClientSaveDTO data) {
+        this.deleted = false;
         this.name = data.name();
         this.pin = data.pin();
         this.email = data.email();
@@ -52,5 +54,9 @@ public class Client {
         if (data.contactInformation() != null) {
             this.contactInformation.edit(data.contactInformation());
         }
+    }
+
+    public void delete() {
+        this.deleted = true;
     }
 }
