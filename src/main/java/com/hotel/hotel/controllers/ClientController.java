@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class ClientController {
 
     @GetMapping
     public Page<ClientListDTO> list(Pageable pagination) {
-        return repository.findAll(pagination).map(ClientListDTO::new);
+        return repository.findAllByDeletedFalse(pagination).map(ClientListDTO::new);
     }
     
     @PatchMapping("/{id}")
@@ -43,5 +44,12 @@ public class ClientController {
     public void edit(@RequestBody @Valid ClientEditDTO data, @PathVariable Long id) {
         Client client = repository.getReferenceById(id);
         client.edit(data);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        Client client = repository.getReferenceById(id);
+        client.delete();
     }
 }

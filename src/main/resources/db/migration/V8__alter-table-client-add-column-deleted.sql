@@ -1,0 +1,2 @@
+ALTER TABLE client
+ADD COLUMN deleted BOOLEAN NOT NULL DEFAULT false;
