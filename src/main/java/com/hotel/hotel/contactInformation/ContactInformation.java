@@ -29,4 +29,31 @@ public class ContactInformation {
         this.postalCode = data.postalCode();
         this.number = data.number();
     }
+
+    public void edit(ContactInformationDTO data) {
+        if (data.phoneNumber() != null) {
+            this.phoneNumber = data.phoneNumber();
+        }
+        if (data.street() != null) {
+            this.street = data.street();
+        }
+        if (data.neighborhood() != null) {
+            this.neighborhood = data.neighborhood();
+        }
+        if (data.state() != null) {
+            this.state = data.state();
+        }
+        if (data.city() != null) {
+            this.city = data.city();
+        }
+        if (data.complement() != null) {
+            this.complement = data.complement();
+        }
+        if (data.postalCode() != null) {
+            this.postalCode = data.postalCode();
+        }
+        if (data.number() != null) {
+            this.number = data.number();
+        }
+    }
 }

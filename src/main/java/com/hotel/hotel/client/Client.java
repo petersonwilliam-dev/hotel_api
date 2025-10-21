@@ -38,4 +38,19 @@ public class Client {
         this.dateOfBirth = data.dateOfBirth();
         this.contactInformation = new ContactInformation(data.contactInformation());
     }
+
+    public void edit(ClientEditDTO data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+        if (data.email() != null) {
+            this.email = data.email();
+        }
+        if (data.dateOfBirth() != null) {
+            this.dateOfBirth = data.dateOfBirth();
+        }
+        if (data.contactInformation() != null) {
+            this.contactInformation.edit(data.contactInformation());
+        }
+    }
 }
