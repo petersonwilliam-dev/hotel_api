@@ -13,7 +13,7 @@ public record RoomTypeSaveDTO(
     String name, 
     
     @Min(1)
-    int capacity, 
+    Integer capacity, 
 
     @NotNull
     @DecimalMin("100.00")
