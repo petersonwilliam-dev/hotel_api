@@ -3,6 +3,7 @@ package com.hotel.hotel.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.hotel.hotel.client.Client;
+import com.hotel.hotel.client.ClientDetailsDTO;
 import com.hotel.hotel.client.ClientEditDTO;
 import com.hotel.hotel.client.ClientListDTO;
 import com.hotel.hotel.client.ClientSaveDTO;
@@ -30,26 +33,40 @@ public class ClientController {
 
     @PostMapping
     @Transactional
-    public void create(@RequestBody @Valid ClientSaveDTO data) {
-        repository.save(new Client(data));
+    public ResponseEntity create(@RequestBody @Valid ClientSaveDTO data, UriComponentsBuilder uriBuilder) {
+        var client = new Client(data);
+        repository.save(client);
+
+        var uri = uriBuilder.path("/client/{id}").buildAndExpand(client.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new ClientDetailsDTO(client));
     }
 
     @GetMapping
-    public Page<ClientListDTO> list(Pageable pagination) {
-        return repository.findAllByDeletedFalse(pagination).map(ClientListDTO::new);
+    public ResponseEntity<Page<ClientListDTO>> list(Pageable pagination) {
+        var clients = repository.findAllByDeletedFalse(pagination).map(ClientListDTO::new);
+        return ResponseEntity.ok(clients);
     }
     
     @PatchMapping("/{id}")
     @Transactional
-    public void edit(@RequestBody @Valid ClientEditDTO data, @PathVariable Long id) {
+    public ResponseEntity edit(@RequestBody @Valid ClientEditDTO data, @PathVariable Long id) {
         Client client = repository.getReferenceById(id);
         client.edit(data);
+        return ResponseEntity.ok(new ClientDetailsDTO(client));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         Client client = repository.getReferenceById(id);
         client.delete();
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getClientById(@PathVariable Long id) {
+        var client = repository.getReferenceById(id);
+        return ResponseEntity.ok(new ClientDetailsDTO(client));
     }
 }

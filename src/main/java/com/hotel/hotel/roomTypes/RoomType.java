@@ -23,7 +23,7 @@ public class RoomType {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int capacity;
+    private Integer capacity;
     private BigDecimal basePrice;
     private String bedConfig;
     private String amenities;
@@ -38,5 +38,26 @@ public class RoomType {
         this.bedConfig = data.bedConfig();
         this.amenities = data.amenities();
         this.category = data.category();
+    }
+
+    public void edit(RoomTypeSaveDTO data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+        if (data.capacity() != null) {
+            this.capacity = data.capacity();
+        }
+        if (data.basePrice() != null) {
+            this.basePrice = data.basePrice();
+        }
+        if (data.bedConfig() != null) {
+            this.bedConfig = data.bedConfig();
+        }
+        if (data.amenities() != null) {
+            this.amenities = data.amenities();
+        }
+        if (data.category() != null) {
+            this.category = data.category();
+        }
     }
 }
