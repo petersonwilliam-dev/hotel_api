@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.hotel.hotel.roomTypes.RoomType;
-import com.hotel.hotel.roomTypes.RoomTypeRepository;
-import com.hotel.hotel.roomTypes.RoomTypeSaveDTO;
+import com.hotel.hotel.domain.roomTypes.RoomType;
+import com.hotel.hotel.domain.roomTypes.RoomTypeRepository;
+import com.hotel.hotel.domain.roomTypes.RoomTypeSaveDTO;
 
 import jakarta.validation.Valid;
 

@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.hotel.hotel.client.Client;
-import com.hotel.hotel.client.ClientDetailsDTO;
-import com.hotel.hotel.client.ClientEditDTO;
-import com.hotel.hotel.client.ClientListDTO;
-import com.hotel.hotel.client.ClientSaveDTO;
-import com.hotel.hotel.client.ClientRepository;
+import com.hotel.hotel.domain.client.Client;
+import com.hotel.hotel.domain.client.ClientDetailsDTO;
+import com.hotel.hotel.domain.client.ClientEditDTO;
+import com.hotel.hotel.domain.client.ClientListDTO;
+import com.hotel.hotel.domain.client.ClientSaveDTO;
+import com.hotel.hotel.domain.client.ClientRepository;
 
 import jakarta.validation.Valid;
 

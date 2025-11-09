@@ -1,4 +1,4 @@
-package com.hotel.hotel.roomTypes;
+package com.hotel.hotel.domain.roomTypes;
 
 public enum Category {
     STD,
