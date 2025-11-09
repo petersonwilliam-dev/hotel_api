@@ -1,4 +1,4 @@
-package com.hotel.hotel.contactInformation;
+package com.hotel.hotel.domain.contactInformation;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

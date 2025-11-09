@@ -1,8 +1,8 @@
-package com.hotel.hotel.client;
+package com.hotel.hotel.domain.client;
 
 import java.time.LocalDate;
 
-import com.hotel.hotel.contactInformation.ContactInformation;
+import com.hotel.hotel.domain.contactInformation.ContactInformation;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;

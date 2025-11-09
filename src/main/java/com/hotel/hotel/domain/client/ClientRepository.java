@@ -1,4 +1,4 @@
-package com.hotel.hotel.client;
+package com.hotel.hotel.domain.client;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
