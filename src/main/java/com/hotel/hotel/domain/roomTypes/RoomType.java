@@ -1,13 +1,20 @@
 package com.hotel.hotel.domain.roomTypes;
 
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hotel.hotel.domain.room.Room;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class RoomType {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +35,10 @@ public class RoomType {
     private BigDecimal basePrice;
     private String bedConfig;
     private String amenities;
+
+    @OneToMany(mappedBy = "roomType", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Room> rooms;
 
     @Enumerated(EnumType.STRING)
     private Category category;
