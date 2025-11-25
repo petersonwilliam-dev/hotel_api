@@ -8,6 +8,6 @@ public record RoomEditDTO(
     StatusRoom status,
     @DecimalMin("100.00")
     BigDecimal customPrice,
-    Integer roomType
+    Long roomType
 ) {
 }
