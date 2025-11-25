@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.hotel.hotel.domain.roomTypes.RoomType;
+import com.hotel.hotel.domain.roomTypes.RoomTypeDetailsDTO;
 import com.hotel.hotel.domain.roomTypes.RoomTypeRepository;
 import com.hotel.hotel.domain.roomTypes.RoomTypeSaveDTO;
 
@@ -40,8 +41,8 @@ public class RoomTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<RoomType>> list(Pageable pagination) {
-        var pages = repository.findAll(pagination);
+    public ResponseEntity<Page<RoomTypeDetailsDTO>> list(Pageable pagination) {
+        var pages = repository.findAll(pagination).map(RoomTypeDetailsDTO::new);
         return ResponseEntity.ok(pages);
     }
 
@@ -50,7 +51,7 @@ public class RoomTypeController {
     public ResponseEntity edit(@RequestBody RoomTypeSaveDTO data, @PathVariable Long id) {
         var roomType = repository.getReferenceById(id);
         roomType.edit(data);
-        return ResponseEntity.ok(roomType);
+        return ResponseEntity.ok(new RoomTypeDetailsDTO(roomType));
     }
 
     @DeleteMapping("/{id}")
